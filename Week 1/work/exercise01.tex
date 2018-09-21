@@ -1,0 +1,168 @@
+\documentclass[a4paper,12pt]{article}
+\author{Adam Ilyas}
+\title{
+CS-E4850 Computer Vision, \\
+Answers to Exercise Round 1
+}
+
+\pagestyle{empty}
+
+% \usepackage{t1enc}
+\usepackage{a4wide}
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+
+\begin{document}
+\vspace{8pt}
+
+\maketitle
+
+\section*{1. Homogeneous coordinates.}
+\begin{itemize}
+\item[a)] The equation of a line in the plane is $$ax + by + c = 0.$$
+Show that by using homogeneous coordinates this can be written as $$\mathbf{x}^\intercal \mathbf{l} = 0$$ where $\mathbf{l} = (a \quad b \quad c)^\intercal$
+
+\textbf{Solution:}
+
+By using homogeneous coordinate, can represent point $\mathbf{x} = (x, y)^\intercal$ as a 3-vector $(x, y, 1)^\intercal$. The line $\mathbf{l} = (a, b, c)^\intercal$.
+
+We know that Point $\mathbf{x} = (x, y)^\intercal$ lies on line $\mathbf{l}$ iff $ax + by + c = 0$
+
+\item[b)]  Show that the intersection of two lines $\mathbf{l}$ and $\mathbf{l}^\prime$ is the point $\mathbf{x} = \mathbf{l} \times \mathbf{l}^\prime$
+
+\textbf{Solution:}
+
+The point $\mathbf{x}$ which is the intersection of both lines, lies on both lines and will fulfil both $\mathbf{x}^\intercal \mathbf{l} = 0$ and $\mathbf{x}^\intercal \mathbf{l}^\prime = 0$
+
+Comparing this with triple scalar product identity $$\mathbf{l} \cdot (\mathbf{l}\times \mathbf{l}^\prime ) = \mathbf{l}^\prime \cdot (\mathbf{l}\times \mathbf{l}^\prime) = 0$$	
+
+we can see that $\mathbf{x} = \mathbf{l} \times \mathbf{l}^\prime$
+
+\item[c)]  Show that the line through two points $\mathbf{x}$ and $\mathbf{x}^\prime$ is $\mathbf{l} = \mathbf{x} \times \mathbf{x}^\prime $
+
+\textbf{Solution}
+
+This means that both points lies on the line  $\mathbf{l}$ and as such $\mathbf{x}^\intercal \mathbf{l} = 0$ and $(\mathbf{x}^\prime)^\intercal \mathbf{l} = 0$.
+
+Comparing this with triple scalar product identity $$\mathbf{x} \cdot (\mathbf{x}\times \mathbf{x}^\prime ) = \mathbf{x}^\prime \cdot (\mathbf{x}\times \mathbf{x}^\prime) = 0$$	
+
+we can see that $\mathbf{l} = \mathbf{x} \times \mathbf{x}^\prime$
+
+\item[d)] Show that for all $\alpha \in R$ the point $\mathbf{y} = \alpha \mathbf{x} + (1 - \alpha)\mathbf{x}^\prime$
+lies on the line through points $\mathbf{x}$ and $\mathbf{x}^\prime$
+
+\textbf{Solution}
+
+Let the line be $\mathbf{l}$, and $\mathbf{l} = \mathbf{x} \times \mathbf{x}^\prime$
+
+If point $\mathbf{y}$ lies on line $\mathbf{l}$,
+$$\mathbf{y}^\intercal \mathbf{l} = 0$$
+$$\mathbf{y}^\intercal (\mathbf{x} \times \mathbf{x}^\prime) = 0$$
+$$( \alpha \mathbf{x} + (1 - \alpha)\mathbf{x}^\prime)
+^\intercal (\mathbf{x} \times \mathbf{x}^\prime) = 0$$
+$$\alpha \mathbf{x}^\intercal (\mathbf{x} \times \mathbf{x}^\prime) + (1 - \alpha)\mathbf{x}^{\prime \intercal} (\mathbf{x} \times \mathbf{x}^\prime) = 0$$
+
+Using triple scalar product identity $$\mathbf{x} \cdot (\mathbf{x}\times \mathbf{x}^\prime ) = \mathbf{x}^\prime \cdot (\mathbf{x}\times \mathbf{x}^\prime) = 0$$
+
+We can reduce $\mathbf{x}^{\intercal} (\mathbf{x} \times \mathbf{x}^\prime)$ and
+$\mathbf{x}^{\prime \intercal} (\mathbf{x} \times \mathbf{x}^\prime)$ to zero
+
+\end{itemize} 
+
+\section*{2. Transformations in 2D.}
+\begin{itemize}
+\item[a)]  Use homogeneous coordinates and give the matrix representations of the following
+transformation groups: translation, Euclidean transformation (rotation+translation),
+similarity transformation (scaling+rotation+translation), affine transformation, projective
+transformation
+
+\item[b)] What is the number of degrees of freedom in these transformations
+
+\textbf{Solution:}
+\begin{center} 
+
+	$$
+	\begin{bmatrix} 
+		1&0&t_x\\
+		0&1&t_y\\
+		0&0&1
+	\end{bmatrix}$$
+	
+Translation \\degrees of freedom: 2 \\($t_x$, $t_y$)
+
+	$$
+	\begin{bmatrix} 
+		\cos \theta & - \sin \theta &t_x\\
+		\sin \theta & \cos \theta &t_y\\
+		0&0&1
+	\end{bmatrix}$$
+	
+Euclidean (rotation + translation) \\degrees of freedom: 3 \\($t_x$, $t_y$, $\theta$)
+
+	$$
+	\begin{bmatrix} 
+		s\cos \theta & - s\sin \theta &t_x\\
+		s\sin \theta & s\cos \theta &t_y\\
+		0&0&1
+	\end{bmatrix}$$
+	
+Similarity (scaling+rotation+translation) \\degrees of freedom: 4 \\($t_x$, $t_y$, $\theta$, $s$)
+
+	$$
+	\begin{bmatrix} 
+		a_{11}&a_{12}&t_x\\
+		a_{21}&a_{22}&t_y\\
+		0&0&1
+	\end{bmatrix}$$
+	
+Affine \\degrees of freedom: 6 \\($a_{11}$, $a_{12}$, $a_{21}$, $a_{22}$, $t_x$, $t_y$)
+
+	$$
+	\begin{bmatrix} 
+		h_{11}&h_{12}&h_{13}\\
+		h_{21}&h_{22}&h_{23}\\
+		h_{31}&h_{32}&h_{33}\\
+	\end{bmatrix}$$
+	
+Projective \\degrees of freedom: 8 \\8 independent ratios amongst the 9 elements
+
+\end{center}
+
+\item[c)]  Why is the number of degrees of freedom in a projective transformation less than the number of elements in a 3 x 3 matrix
+(Hint: The answers to the first two sub-tasks are directly given in Table 2.1 in Hartley
+and Zisserman.
+
+\textbf{Solution}
+
+In the example above, the matrix has nine elements with only their ratio significant, so the transformations is specified by eight parameters. 
+
+Since we only care about the ratio between the elements and not the scale of each individual elements due to homogeneous representation, the degree of freedom less than the number of elements.
+
+\end{itemize}
+
+\section*{3. Planar projective transformation.}
+\begin{itemize}
+\item[ ] The equation of a line on a plane, $ax + by + c = 0$, can be written as 
+$\tilde{\mathbf{l}}^\intercal \tilde{\mathbf{x}} = 0$  where $\tilde{\mathbf{l}} = (a,b,c)^\intercal$  and $ \tilde{\mathbf{x}}$ are homogeneous coordinates for lines and points, respectively. Under
+a planar projective transformation, represented with an invertible $3 \times 3$ matrix $\mathbf{H}$, points
+transform as $$\tilde{\mathbf{x}}^\prime = \mathbf{H} \tilde{\mathbf{x}}$$
+\item[a)]  Given the matrix $\mathbf{H}$ for transforming points, as defined above, define the line transformation (i.e. transformation that gives $\tilde{\mathbf{l}}^\prime$ which is a transformed version of $\tilde{\mathbf{l}}$).
+
+\textbf{Solution}
+
+Given $\mathbf{H}$, we know $$\tilde{\mathbf{l}}^\intercal \mathbf{H}^{-1} \mathbf{H} \tilde{\mathbf{x}} = 0$$
+
+Thus, all points $\mathbf{H} \tilde{\mathbf{x}}$ lies on line $\tilde{\mathbf{l}}^\intercal \mathbf{H}^{-1}$
+
+The line transformation is $\tilde{\mathbf{l}}^\intercal \mathbf{H}^{-1}$
+
+\item[b)]
+
+\end{itemize}
+
+
+\end{document}
