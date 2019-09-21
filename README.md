@@ -4,7 +4,7 @@
 This repository contains the Jupyter notebooks and related files used in the Python programming exercise for the CS-E4850 - Computer Vision course at the Aalto University, including (1) the actual weekly homework assignments and (2) all test images. Please, see the notebooks for more details on e.g. submission guideline.
 
 ## Textbook/ Reference
-(Here)[http://szeliski.org/Book/drafts/SzeliskiBook_20100903_draft.pdf]
+[Here]([http://szeliski.org/Book/drafts/SzeliskiBook_20100903_draft.pdf)
 
 ## Installation
 
